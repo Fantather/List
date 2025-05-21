@@ -1,5 +1,7 @@
 ﻿#pragma once
-#include "SinglyLinkedList.h"
+
+template<typename T>
+class SinglyLinkedList;
 
 template<typename T>
 struct SinglyLinkedList<T>::SinglyLinkedNode

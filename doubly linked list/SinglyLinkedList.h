@@ -17,12 +17,13 @@ private:
 	// - Remove: used when removing elements (index must be less than size_)
 	enum class IndexMode{Insert, Remove};
 
-	static const size_t NULL_ = static_cast<size_t>(-1);
-
 	// Helper methods
 	size_t valid_index_(ptrdiff_t index, IndexMode mode);	// Validate your index
 
 public:
+
+	static const size_t NULL_ = static_cast<size_t>(-1);	// Meaning for incorrect index
+
 	// Constructors and destructor
 	SinglyLinkedList();						// Default
 	SinglyLinkedList(const T& data);		// With parameters
@@ -55,7 +56,7 @@ public:
 	void Reverse();					// Unfolds elements of the list in the opposite direction
 
 	// Other methods
-	bool empty() const;				// Return true if head_ != nullptr
+	bool empty() const;				// Return true if head_ == nullptr
 	
 };
 

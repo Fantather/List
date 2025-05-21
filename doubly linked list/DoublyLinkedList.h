@@ -3,10 +3,10 @@
 #include <optional>
 
 template <typename T>
-class DoublyLinkedList
-{
+class DoublyLinkedList {
 private:
 	struct DoublyLinkedNode;			// Announcement node of the list
+
 	DoublyLinkedNode* head_;			// Pointer to the first node of the list
 	DoublyLinkedNode* tail_;			// Pointer to the last node of the list
 	size_t size_;						// Number of nodes in the list
@@ -45,6 +45,7 @@ public:
 //-------------------------------------------------------------------
 /*========================== Definitions ==========================*/
 //-------------------------------------------------------------------
+#include "DoublyLinkedNode.h"
 
 
 // Constructors and Destructor
@@ -81,7 +82,7 @@ inline void DoublyLinkedList<T>::AddToHead(const T& value)
 		head_ = new_head;
 	}
 
-	++size;
+	++size_;
 }
 
 // Add a new node to the end of list
@@ -102,7 +103,7 @@ inline void DoublyLinkedList<T>::AddToTail(const T& value)
 		tail_ = new_tail;
 	}
 
-	++size;
+	++size_;
 }
 
 
@@ -131,7 +132,7 @@ inline void DoublyLinkedList<T>::DeleteFromHead()
 	}
 
 	delete old_head;
-	--size;
+	--size_;
 }
 
 // Removes the node from the end of the list
@@ -177,11 +178,10 @@ inline void DoublyLinkedList<T>::DeleteAll()
 template<typename T>
 inline void DoublyLinkedList<T>::Show()
 {
-	DoublyLinkedNode current = head_;
-	for (size_t i = 0; i < size_; i++)
-	{
-		std::cout << current.value_ << " ";
-		current = current.next_;
+	DoublyLinkedNode* current = head_;
+	while (current) {
+		std::cout << current->value_ << " ";
+		current = current->next_;
 	}
 }
 

@@ -280,11 +280,16 @@ inline void SinglyLinkedList<T>::show()
 template<typename T>
 inline void SinglyLinkedList<T>::Reverse()
 {
+	if (!head_ || !head_->next_) return;  // ничего не делаем для пустого или длины 1
+
+	// Сохраняем старую голову — она станет новым tail_
+	SinglyLinkedNode* old_head = head_;
+
 	SinglyLinkedNode* current = head_;
 	SinglyLinkedNode* previous = nullptr;
 	SinglyLinkedNode* next = nullptr;
 
-	while (head_)
+	while (current)
 	{
 		next = current->next_;
 		current->next_ = previous;
@@ -292,7 +297,9 @@ inline void SinglyLinkedList<T>::Reverse()
 		current = next;
 	}
 
+	// Назначаем новую голову и новый хвост
 	head_ = previous;
+	tail_ = old_head;
 }
 
 
@@ -301,7 +308,7 @@ inline void SinglyLinkedList<T>::Reverse()
 
 /*==== Other methods ====*/
 
-// Return true if head_ != nullptr
+// Return true if head_ == nullptr
 template<typename T>
 inline bool SinglyLinkedList<T>::empty() const
 {
